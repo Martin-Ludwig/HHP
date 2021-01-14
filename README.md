@@ -6,7 +6,7 @@ Der Haushaltsplaner zeigt dem Nutzer eine Übersicht seiner Ausgaben und den Aus
 **Entwickelt von:**
  * [Sven Tippner](https://github.com/sventippner)
  * [Martin Ludwig](https://github.com/Martin-Ludwig)
- * [HellShine666](https://github.com/HellShine666)
+ * [Tom Gr.](https://github.com/Tom-G-r)
 
 
 # Startseite
