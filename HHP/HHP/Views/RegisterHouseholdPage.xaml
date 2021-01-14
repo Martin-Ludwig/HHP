@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.RegisterHouseholdPage"
+             xmlns:vm="clr-namespace:HHP.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:RegisterHouseholdViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ScrollView
+            HorizontalOptions="Center">
+            <StackLayout Padding="16"
+                         HorizontalOptions="Center">
+
+                <Label x:Name="label"
+                       Text="Haushaltsplaner"
+                       FontSize="Large"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                
+                <Label x:Name="CreateHouseholdLabel"
+                       Text="Haushalt erstellen"
+                       FontSize="Medium"
+                       Margin="0,16,0,0"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                
+                <Frame OutlineColor="Gray"
+                       CornerRadius="2"
+                       Padding="16">
+                    <StackLayout>
+                        <Label x:Name="HouseholdNameLabel"
+                           Text="Haushaltsname"
+                           FontSize="Small"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+                        <Entry x:Name="RegisterHousholdEntry"
+                           Placeholder="Haushaltsname" PlaceholderColor="Gray"/>
+                        <Button x:Name="CreateHouseholdButton"
+                            Text="Haushalt erstellen"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Clicked="CreateHouseholdButton_Clicked"
+                            Margin="0,16,0,0"
+                            BackgroundColor="{StaticResource SecondaryColor}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Label x:Name="JoinHouseholdLabel"
+                       Text="Haushalt beitreten"
+                       Margin="0,16,0,0"
+                       FontSize="Medium"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Frame OutlineColor="Gray"
+                       CornerRadius="2"
+                       Padding="16">
+                    <StackLayout>
+                        <Label x:Name="HouseholdIdLabel"
+                           Text="Haushalts-ID"
+                           FontSize="Small"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+                        <Entry x:Name="JoinHouseholdEntry"
+                           Placeholder="Haushaltsname#0000" PlaceholderColor="Gray"/>
+
+                        <Button x:Name="JoinHouseholdButton"
+                            Text="Bestehendem Haushalt beitreten"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Margin="0,16,0,0"
+                            Clicked="JoinHouseholdButton_Clicked"
+                            BackgroundColor="{StaticResource SecondaryColor}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

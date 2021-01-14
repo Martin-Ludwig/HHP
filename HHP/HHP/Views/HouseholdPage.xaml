@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.HouseholdPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <!-- Android -->
+                    <RowDefinition x:Name="RowDefition_Chart1"  Height="200" />
+                    <!-- UWP -->
+                    <!-- <RowDefinition Height="200" /> -->
+                    
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition x:Name="RowDefition_Chart2" Height="300" />
+
+                </Grid.RowDefinitions>
+                
+                <Label x:Name="Ausgaben" 
+                       Text="Ausgaben"
+                       FontSize="Large"
+                       Grid.Row="0"
+                       HorizontalOptions="Center"
+                       />
+                
+                <DatePicker x:Name="DatePicker"
+                            Grid.Row="1"
+                            DateSelected="DatePicker_DateSelected"
+                            />
+
+
+                <!-- Chart 1-->
+                <!-- Subtitle -->
+                <Label x:Name="Label_chart1" 
+                       Text="{Binding CurrentMonth, StringFormat='Ausgaben im Monat {0}'}"
+                       FontSize="Medium"
+                       Grid.Row="2"
+                       HorizontalOptions="Start"
+                       />
+                <!-- ChartView -->
+                <forms:ChartView x:Name="Chart1" 
+                    Chart="{Binding CostChart}"
+                    Grid.Row="3"
+                    />
+                <!-- ChartView Center -->
+                <Label x:Name="Diagram" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Text="{Binding Total, StringFormat='{0}€'}"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       Grid.Row="3"
+                       />
+
+                <!-- Chart 2 -->
+                <!-- Subtitle -->
+                <Label x:Name="Label_chart2" 
+                       Text="{Binding CurrentYear, StringFormat='Ausgaben im Jahr {0}'}"
+                       FontSize="Medium"
+                       Grid.Row="4"
+                       HorizontalOptions="Start"
+                       />
+                <!-- ChartView -->
+                <forms:ChartView x:Name="Chart2" 
+                    Chart="{Binding YearChart}"
+                    Grid.Row="5"
+                    />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

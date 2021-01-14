@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.RegisterUserPage"
+             xmlns:vm="clr-namespace:HHP.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:RegisterUserViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView
+            HorizontalOptions="Center">
+            <StackLayout 
+                Padding="16"
+                HorizontalOptions="Center">
+
+                <Label x:Name="label"
+                    Text="Haushaltsplaner"
+                    FontSize="Large"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+                <Label x:Name="createaccountlabel"
+                    Text="Benutzerkonto erstellen"
+                    FontSize="Medium"
+                       Margin="0,16,0,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+                <Frame OutlineColor="Gray"
+                       CornerRadius="2"
+                       Padding="16">
+                    <StackLayout>
+
+                        <Label x:Name="namelabel"
+                            Text="Benutzername"
+                            FontSize="Small"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"/>
+
+                        <Entry x:Name="RegisterUsername"
+                            Placeholder="Benutzername" PlaceholderColor="Gray"/>
+                        <Label x:Name="passwordlabel"
+                            Text="Passwort"
+                            FontSize="Small"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            Margin="0,16,0,0"/>
+                        <Entry x:Name="RegisterPassword"
+                            IsPassword="True"
+                            Placeholder="Passwort" PlaceholderColor="Gray"/>
+
+
+                        <Button x:Name="CreateUserButton"
+                             Text="Erstellen"
+                             BackgroundColor="{StaticResource SecondaryColor}"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Margin="0,16,0,0"
+                             Clicked="CreateUserButtonOnClick"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

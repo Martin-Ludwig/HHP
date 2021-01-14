@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.PurchaseDetailPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Padding="16">
+                <Label x:Name="Label_purchaseTitle"
+                       Text="{Binding PurchaseTitle}"
+                       FontSize="20"
+                       FontAttributes="Bold" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Preis: " />
+                    <Label Grid.Row="0" Grid.Column="1"
+                           x:Name="Label_purchasePrice"
+                           Text="{Binding PurchasePrice}" />
+
+                    <Label Grid.Row="1" Grid.Column="0"
+                           Text="Bezahlt von " />
+                    <Label Grid.Row="1" Grid.Column="1"
+                           x:Name="Label_userPayed" 
+                           Text="{Binding PurchaseUserPayed}" />
+
+
+                    <Label Grid.Row="2" Grid.Column="0"
+                           Text="Beteiligte Personen: " />
+
+                    <ListView Grid.Row="2" Grid.Column="1"
+                              SelectionMode="None" 
+                              x:Name="ListView_purchaseUsersInvolved" 
+                              ItemsSource="{Binding PurchaseUsersInvolved}"
+                              HeightRequest="128"
+                              >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding}" 
+                                               FontSize="16"
+                                               LineBreakMode="NoWrap"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Grid.Row="3" Grid.Column="0"
+                           Text="Rechnung: "
+                           HeightRequest="24"/>
+                    <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                           x:Name="Image_purchase_receipt" 
+                           Source="{Binding Image_ReceiptImage}"
+                           HorizontalOptions="Start"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

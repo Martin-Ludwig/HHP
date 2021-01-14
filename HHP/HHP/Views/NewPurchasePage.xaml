@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:HHP.Forms"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.NewPurchasePage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0,16,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="16" Spacing="1">
+
+                <Label Text="Titel" Margin="0,0,0,0" />
+                <Entry x:Name="Entry_purchase_title" Placeholder="Titel" />
+
+                <Label Text="Preis" />
+                <Entry x:Name="Entry_purchase_price" Placeholder="Preis">
+                    <Entry.Behaviors>
+                        <local:PriceValidationBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="Beteiligte Personen" />
+
+                <CollectionView
+                    ItemsSource="{Binding HouseholdUsers}"
+                    x:Name="CollectionView_purchase_involved_users"
+                    SelectionMode="Multiple"
+                    HeightRequest="128">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Span="1" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label x:Name="Listview_Item_Label_purchase_involved_users" 
+                                   Text="{Binding Name}"
+                                   TextColor="Black" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Bezahlt von" />
+                <Picker x:Name="Picker_purchase_payed_by" 
+                        ItemsSource="{Binding HouseholdUsers}" 
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedIndex="{Binding PickerSelectedCurrentUser}"/>
+
+                <Label Text="Datum" />
+                <DatePicker x:Name="DatePicker_purchase_day" Format="D"/>
+
+                <Button Text="Bild aufnehmen" Clicked="TakePhotoButton_OnClicked" Margin="0,16,0,0" />
+
+                <Image x:Name="Image_purchase_receipt" Source="{Binding Image_ReceiptImage}"/>
+                
+                <Grid Margin="0,16,0,0" Padding="0" ColumnSpacing="1" >
+                    <Button Text="Abbrechen" Clicked="CancelPage" Grid.Column="0"/>
+                    <Button Text="Einkauf speichern" 
+                            Clicked="InsertPurchase" 
+                            Grid.Column="1" Grid.ColumnSpan="2" 
+                            BackgroundColor="{StaticResource AccentColor}"
+                            TextColor="White"/>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

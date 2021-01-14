@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HHP.Views.HomePage"
+             xmlns:vm="clr-namespace:HHP.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="16"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center">
+            <Label x:Name="nettolabel"
+                       Text="{Binding Netto, StringFormat='Netto: {0:0.00}€'}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="Medium"/>
+            <StackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
+                <Frame OutlineColor="Gray"
+                       Padding="16"
+                       CornerRadius="2"
+                       WidthRequest="400"
+                       HeightRequest="600">
+                    <StackLayout>
+                        <Label
+                            Text="Deine Ansprüche"
+                            FontSize="Small"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"/>
+                        <CollectionView
+                             ItemsSource="{Binding Claim}"
+                             x:Name="CollectionView_purchase_involved_users"
+                             SelectionMode="Multiple"
+                             HeightRequest="600">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Span="1" Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label x:Name="Listview_Item_Label_purchase_involved_users" 
+                                           VerticalOptions="Center"
+                                           Text="{Binding}"
+                                           TextColor="Black" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button
+                            Text="Geld erhalten"
+                            Clicked="Button_Clicked"
+                            WidthRequest="400"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame OutlineColor="Gray"
+                       Padding="16"
+                       CornerRadius="2"
+                       WidthRequest="400"
+                       HeightRequest="600">
+                    <StackLayout>
+                        <Label
+                            Text="Deine Schulden"
+                            FontSize="Small"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"/>
+                        <ListView x:Name="Listview_purchases" 
+                      ItemsSource="{Binding Debt}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label x:Name="ListView_Data_Label_title"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding}"
+                                                   />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+
+</ContentPage>
